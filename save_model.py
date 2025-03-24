@@ -8,9 +8,9 @@ def load_data(file_path):
 
 def main():
     
-    df_place = load_data('tn_visit_area_info.csv')
-    df_travel = load_data('tn_travel.csv')
-    df_traveler = load_data('tn_traveller_master.csv')
+    df_place = load_data('./data/tn_visit_area_info.csv')
+    df_travel = load_data('./data/tn_travel.csv')
+    df_traveler = load_data('./data/tn_traveller_master.csv')
 
     df = pd.merge(df_place, df_travel, on='TRAVEL_ID', how='left')
     df = pd.merge(df, df_traveler, on='TRAVELER_ID', how='left')
@@ -88,7 +88,7 @@ def main():
         plot=True
     )
 
-    df_filter.to_csv('df_filter.csv', encoding='utf-8', index=False)
+    df_filter.to_csv('./data/df_filter.csv', encoding='utf-8', index=False)
     model.save_model('catboost_model.cbm')
 
 if __name__ == '__main__':
